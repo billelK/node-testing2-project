@@ -2,15 +2,28 @@ const router = require("express").Router()
 const model = require("./users-module")
 
 router.get("/", (req,res,next) => {
-    res.json({API: "up"})
+    model.getAll()
+        .then(users => {
+            res.status(200).json(users)
+        })
+        .catch(next)
 })
 
 router.post("/", (req,res,next) => {
-    res.json({API: "up"})
+    model.add(req.body)
+        .then(newUser => {
+            res.status(201).json(newUser)
+        })
+        .catch(next)
 })
 
-router.get("/:id", (req,res,next) => {
-    res.json({API: "up"})
+router.delete("/:id", (req,res,next) => {
+    const {id} = req.params
+    model.remove(id)
+        .then(user => {
+            res.status(200).json(user)
+        })
+        .catch(next)
 })
 
 router.use((err,req,res,next) => {
