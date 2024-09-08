@@ -8,7 +8,7 @@
     "seed": "npx knex seed:run",
     "rollback": "npx knex migrate:rollback",
     "resetdb": "npm run rollback && npm run migrate && npm run seed",
-    "test": "cross-env NODE_ENV=testing jest --verbose --watchAll --runInBand"
+    "test": "cross-env NODE_ENV=testing jest --verbose --watchAll --runInBand --detectOpenHandles"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.10.0",
+    "@types/jest": "^29.5.12",
     "cross-env": "^7.0.3",
     "eslint": "^9.10.0",
     "globals": "^15.9.0",

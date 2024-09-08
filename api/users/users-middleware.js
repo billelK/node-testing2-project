@@ -2,7 +2,6 @@ const db = require("../../data/db-config")
 
 async function nameIsUnique(req,res,next) {
     const {name} = req.body
-    console.log(name);
     const [user] = await db("users").where({name})
     try{
         if (!user) {
