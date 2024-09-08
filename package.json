@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "server": "nodemon index.js",
+    "migrate": "npx knex migrate:latest",
+    "seed": "npx knex seed:run",
+    "rollback": "npx knex migrate:rollback",
+    "resetdb": "npm run rollback && npm run migrate && npm run seed",
     "test": "cross-env NODE_ENV=testing jest --verbose --watchAll --runInBand"
   },
   "repository": {
