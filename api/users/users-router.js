@@ -1,5 +1,6 @@
 const router = require("express").Router()
 const model = require("./users-module")
+const {nameIsUnique} = require("./users-middleware")
 
 router.get("/", (req,res,next) => {
     model.getAll()
@@ -9,7 +10,7 @@ router.get("/", (req,res,next) => {
         .catch(next)
 })
 
-router.post("/", (req,res,next) => {
+router.post("/",nameIsUnique, (req,res,next) => {
     model.add(req.body)
         .then(newUser => {
             res.status(201).json(newUser)
